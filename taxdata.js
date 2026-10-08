@@ -11,6 +11,7 @@ window.TAXDATA = {
   },
   fica: { ssRate: 0.062, ssWageBase: 184500, medicareRate: 0.0145, addlMedicareRate: 0.009,
           addlThreshold: { single: 200000, married: 250000, head: 200000 } },
+  k401: { deferral: 24500, catchUp: 8000, superCatchUp: 11250, compLimit: 360000 },
   // rate = estimated effective state income tax rate on wages (percent). approx:false only for no-tax states.
   states: {
     AL:["Alabama",4.0],AK:["Alaska",0],AZ:["Arizona",2.5],AR:["Arkansas",3.9],CA:["California",5.0],
