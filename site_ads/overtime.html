@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.googletagservices.com https://*.adtrafficquality.google https://*.google.com; style-src 'self'; img-src 'self' data: https:; connect-src https://pagead2.googlesyndication.com https://*.google.com https://*.doubleclick.net https://*.adtrafficquality.google; base-uri 'none'; form-action 'none'; style-src-attr 'unsafe-inline'; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.google.com https://*.doubleclick.net">
+<meta name="referrer" content="no-referrer">
+<title>Overtime Pay Calculator – Time and a Half Calculator</title>
+<meta name="description" content="Free overtime pay calculator. Enter your hourly rate and hours worked to see regular pay, overtime pay and total weekly earnings.">
+<link rel="canonical" href="https://www.hrmathhub.com/overtime.html">
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header><div class="wrap"><a href="index.html">HR Math Hub</a><nav class="tools" aria-label="Calculators"><a href="index.html">Paycheck</a><a href="overtime.html" aria-current="page">Overtime</a><a href="pto.html">PTO Accrual</a><a href="fmla.html">FMLA Eligibility</a><a href="salary-hourly.html">Salary ↔ Hourly</a><a href="tools.html">All tools</a></nav></div></header>
+<main class="wrap">
+<h1>Overtime Pay Calculator</h1>
+<p class="lead">Work out your overtime pay at time-and-a-half (or any rate). Nothing you type leaves your device.</p>
+<div class="grid">
+ <section class="card" aria-label="Your details"><label for="rate">Hourly rate ($)</label><input id="rate" type="number" inputmode="decimal" min="0" step="any" value="25" ><label for="hours">Hours worked this week</label><input id="hours" type="number" inputmode="decimal" min="0" step="any" value="48" max="168"><label for="thr">Overtime starts after (hours per week)</label><input id="thr" type="number" inputmode="decimal" min="0" step="any" value="40" max="168"><label for="mult">Overtime multiplier</label><select id="mult"><option value="1.5">1.5x (time and a half)</option><option value="2">2x (double time)</option><option value="1.25">1.25x</option></select><label for="weeks">Number of weeks to total</label><input id="weeks" type="number" inputmode="decimal" min="0" step="any" value="1" max="52"></section>
+ <section class="card" aria-live="polite" aria-label="Results">
+  <div class="note">Your result</div><div class="big" id="result">-</div><p class="note" id="resultNote"></p>
+  <table><tbody id="rows"></tbody></table>
+ </section></div><article><h2>How overtime pay works</h2><p>Under the federal Fair Labor Standards Act (FLSA), most non-exempt employees must be paid at least 1.5 times their regular rate for hours over 40 in a workweek. Some states, such as California, also require overtime after 8 hours in a day or double time at certain points, so check your state's rules. Salaried employees can still be eligible for overtime unless they meet the exemption tests for duties and salary level.</p><p>The "regular rate" can include more than base pay, for example non-discretionary bonuses and shift differentials. This calculator uses the hourly rate you enter.</p></article><div class="cta"><strong>Want to go deeper?</strong> GRC Training Online runs live and recorded HR compliance webinars on FMLA, wage and hour, and more. <a href="https://www.grctrainingonline.com/webinars.html" rel="noopener">Browse the webinars &rarr;</a></div>
+<div class="adslot" id="ad-1"></div>
+</main>
+<footer><div class="wrap">&copy; 2026 HR Math Hub · <a href="privacy.html">Privacy Policy</a> · <button type="button" class="linklike" id="cookie-settings">Cookie settings</button> · Estimates only; not tax, legal or financial advice.</div></footer>
+<script src="config.js"></script><script src="overtime.js"></script><script src="consent.js"></script>
+</body></html>

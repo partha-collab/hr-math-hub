@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>2026 Paycheck Calculator – Estimate Your Take-Home Pay</title>
+<meta name="description" content="Free 2026 paycheck calculator for all 50 US states. Estimate federal tax, Social Security, Medicare, state tax and your take-home pay per paycheck.">
+<link rel="canonical" href="https://www.hrmathhub.com/">
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header><div class="wrap"><a href="index.html">HR Math Hub</a><nav class="tools" aria-label="Calculators"><a href="index.html" aria-current="page">Paycheck</a><a href="overtime.html">Overtime</a><a href="pto.html">PTO Accrual</a><a href="fmla.html">FMLA Eligibility</a><a href="salary-hourly.html">Salary ↔ Hourly</a><a href="tools.html">All tools</a></nav></div></header>
+<main class="wrap">
+<h1><span id="year">2026</span> Paycheck Calculator</h1>
+<p class="lead">Enter your pay to see an estimate of your take-home pay after federal tax, Social Security, Medicare and state tax. Nothing you type leaves your device.</p>
+
+<div class="grid">
+ <section class="card" aria-label="Your details">
+  <label for="paytype">I get paid</label>
+  <select id="paytype"><option value="salary">A yearly salary</option><option value="hourly">By the hour</option></select>
+  <label for="amount" id="amountLabel">Annual salary ($)</label>
+  <input id="amount" type="number" inputmode="decimal" min="0" step="any" value="60000">
+  <div id="hoursWrap" hidden><label for="hours">Hours per week</label><input id="hours" type="number" inputmode="decimal" min="0" max="168" value="40"></div>
+  <label for="freq">Pay frequency</label>
+  <select id="freq"><option value="biweekly">Every 2 weeks (26)</option><option value="weekly">Weekly (52)</option><option value="semimonthly">Twice a month (24)</option><option value="monthly">Monthly (12)</option></select>
+  <label for="status">Filing status</label>
+  <select id="status"><option value="single">Single</option><option value="married">Married filing jointly</option><option value="head">Head of household</option></select>
+  <label for="state">State</label><select id="state"></select>
+  <p class="hint" id="stateHint"></p>
+  <label for="stateRate">Your state tax rate % (optional)</label>
+  <input id="stateRate" type="number" inputmode="decimal" min="0" max="20" step="any" placeholder="Leave blank to use the estimate">
+  <label for="pretax">Pre-tax 401(k) contribution (% of pay)</label>
+  <input id="pretax" type="number" inputmode="decimal" min="0" max="100" step="any" value="0">
+ </section>
+ <section class="card" aria-live="polite" aria-label="Results">
+  <div class="note">Your estimate</div>
+  <div class="big" id="takehome">$0.00</div>
+  <p class="note" id="takehomeNote"></p>
+  <table><thead><tr><th>Item</th><th>Per paycheck</th><th>Per year</th></tr></thead><tbody id="rows"></tbody></table>
+  <p class="disc">Estimates only, not tax advice. Uses 2026 federal brackets and the standard deduction, and assumes one job and no credits. State tax is an approximate rate. Your real paycheck can differ because of your W-4, benefits and local taxes.</p>
+ </section>
+</div>
+
+<article>
+ <h2>How this paycheck calculator works</h2>
+ <p>We start with your gross pay, subtract any pre-tax 401(k) contribution, then apply the 2026 federal tax brackets after the standard deduction for your filing status. Social Security (6.2% up to $184,500) and Medicare (1.45%, plus 0.9% on high earners) are taken from your gross wages. State income tax is estimated from the state you pick, or from a rate you type in.</p>
+ <p>This tool does not include local or city taxes, tax credits, other income, or extra W-4 withholding.</p>
+</article>
+
+<div class="adslot" id="ad-1"></div>
+</main>
+<footer><div class="wrap">&copy; 2026 HR Math Hub · <a href="privacy.html">Privacy Policy</a> · <button type="button" class="linklike" id="cookie-settings">Cookie settings</button> · Estimates only; not tax, legal or financial advice.</div></footer>
+<script src="config.js"></script><script src="taxdata.js"></script><script src="calc.js"></script><script src="consent.js"></script>
+</body></html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.googletagservices.com https://*.adtrafficquality.google https://*.google.com; style-src 'self'; img-src 'self' data: https:; connect-src https://pagead2.googlesyndication.com https://*.google.com https://*.doubleclick.net https://*.adtrafficquality.google; base-uri 'none'; form-action 'none'; style-src-attr 'unsafe-inline'; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.google.com https://*.doubleclick.net">
+<meta name="referrer" content="no-referrer">
+<title>Salary to Hourly Calculator – Convert Hourly to Annual Pay</title>
+<meta name="description" content="Convert salary to hourly pay or hourly to annual salary. See daily, weekly, biweekly, monthly and yearly amounts.">
+<link rel="canonical" href="https://www.hrmathhub.com/salary-hourly.html">
+<link rel="stylesheet" href="styles.css">
+</head><body>
+<header><div class="wrap"><a href="index.html">HR Math Hub</a><nav class="tools" aria-label="Calculators"><a href="index.html">Paycheck</a><a href="overtime.html">Overtime</a><a href="pto.html">PTO Accrual</a><a href="fmla.html">FMLA Eligibility</a><a href="salary-hourly.html" aria-current="page">Salary ↔ Hourly</a><a href="tools.html">All tools</a></nav></div></header>
+<main class="wrap">
+<h1>Salary ↔ Hourly Calculator</h1>
+<p class="lead">Convert between hourly pay and yearly salary, with weekly, biweekly and monthly amounts. Nothing you type leaves your device.</p>
+<div class="grid">
+ <section class="card" aria-label="Your details"><label for="mode">I know my</label><select id="mode"><option value="salary">Annual salary</option><option value="hourly">Hourly rate</option></select><label for="amount" id="amountLabel">Annual salary ($)</label><input id="amount" type="number" inputmode="decimal" min="0" step="any" value="60000"><label for="hpw">Hours per week</label><input id="hpw" type="number" inputmode="decimal" min="0" step="any" value="40" max="168"><label for="wpy">Weeks worked per year</label><input id="wpy" type="number" inputmode="decimal" min="0" step="any" value="52" max="52"></section>
+ <section class="card" aria-live="polite" aria-label="Results">
+  <div class="note">Your result</div><div class="big" id="result">-</div><p class="note" id="resultNote"></p>
+  <table><tbody id="rows"></tbody></table>
+ </section></div><article><h2>How the conversion works</h2><p>Hourly pay = annual salary &divide; (hours per week &times; weeks per year). A full-time job at 40 hours for 52 weeks is 2,080 paid hours a year. If you get unpaid time off, lower the weeks per year to see the effect.</p></article><div class="cta"><strong>Want to go deeper?</strong> GRC Training Online runs live and recorded HR compliance webinars on FMLA, wage and hour, and more. <a href="https://www.grctrainingonline.com/webinars.html" rel="noopener">Browse the webinars &rarr;</a></div>
+<div class="adslot" id="ad-1"></div>
+</main>
+<footer><div class="wrap">&copy; 2026 HR Math Hub · <a href="privacy.html">Privacy Policy</a> · <button type="button" class="linklike" id="cookie-settings">Cookie settings</button> · Estimates only; not tax, legal or financial advice.</div></footer>
+<script src="config.js"></script><script src="convert.js"></script><script src="consent.js"></script>
+</body></html>
