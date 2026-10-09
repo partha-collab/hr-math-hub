@@ -10,7 +10,7 @@
   function wire(ids, fn) { ids.forEach(function (id) { $(id).addEventListener("input", fn); $(id).addEventListener("change", fn); }); document.addEventListener("DOMContentLoaded", fn); }
   function bracketTax(taxable, table) { var tax = 0, prev = 0; for (var i = 0; i < table.length; i++) { if (taxable > prev) tax += (Math.min(taxable, table[i][0]) - prev) * table[i][1]; prev = table[i][0]; } return tax; }
   function fillStates(sel) { Object.keys(D.states).sort(function (a, b) { return D.states[a][0] < D.states[b][0] ? -1 : 1; }).forEach(function (k) { var o = document.createElement("option"); o.value = k; o.textContent = D.states[k][0]; sel.appendChild(o); }); sel.value = "TX"; }
-  function stateRate() { return $("stateRate").value === "" ? D.states[$("state").value][1] : num($("stateRate").value, 0, 20); }
+  function stateRate() { return $("stateRate").value === "" ? null : num($("stateRate").value, 0, 20); }
   var N = { weekly: 52, biweekly: 26, semimonthly: 24, monthly: 12 };
   function render() {
     var age = num($("age").value, 16, 100), sal = num($("salary").value, 0, 1e9), pct = num($("pct").value, 0, 100),
@@ -20,8 +20,10 @@
     var comp = Math.min(sal, L.compLimit), want = comp * pct / 100, contrib = Math.min(want, limit);
     var match = Math.min(contrib, comp * mCap / 100) * mRate / 100;
     var sd = D.standardDeduction[st], tbl = D.brackets[st];
-    var fedSave = bracketTax(Math.max(0, sal - sd), tbl) - bracketTax(Math.max(0, sal - contrib - sd), tbl);
-    var stSave = contrib * sr / 100, cost = contrib - fedSave - stSave;
+    var fed0 = bracketTax(Math.max(0, sal - sd), tbl), fed1 = bracketTax(Math.max(0, sal - contrib - sd), tbl), fedSave = fed0 - fed1;
+    var sc = $("state").value;
+    var stSave = sr === null ? window.STATETAX.tax(sc, st, sal, 0, fed0) - window.STATETAX.tax(sc, st, sal, contrib, fed1) : contrib * sr / 100;
+    var cost = contrib - fedSave - stSave;
     var yearly = contrib + match, fv = bal * Math.pow(1 + ret, yrs) + (ret === 0 ? yearly * yrs : yearly * (Math.pow(1 + ret, yrs) - 1) / ret);
     $("result").textContent = money.format(fv);
     $("resultNote").textContent = "estimated 401(k) balance in " + yrs + " years at " + dec.format(ret * 100) + "% a year (not adjusted for inflation)";

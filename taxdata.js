@@ -1,6 +1,6 @@
 // All tax figures live here so they can be updated once a year.
 // Federal + FICA: IRS Rev. Proc. 2025-32 and SSA 2026 announcements (tax year 2026).
-// State figures are APPROXIMATE estimates (see "approx") - verify against each state's revenue department before launch.
+// State names only: the real state brackets are in statetax.js.
 window.TAXDATA = {
   year: 2026,
   standardDeduction: { single: 16100, married: 32200, head: 24150 },

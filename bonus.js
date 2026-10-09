@@ -10,7 +10,7 @@
   function wire(ids, fn) { ids.forEach(function (id) { $(id).addEventListener("input", fn); $(id).addEventListener("change", fn); }); document.addEventListener("DOMContentLoaded", fn); }
   function bracketTax(taxable, table) { var tax = 0, prev = 0; for (var i = 0; i < table.length; i++) { if (taxable > prev) tax += (Math.min(taxable, table[i][0]) - prev) * table[i][1]; prev = table[i][0]; } return tax; }
   function fillStates(sel) { Object.keys(D.states).sort(function (a, b) { return D.states[a][0] < D.states[b][0] ? -1 : 1; }).forEach(function (k) { var o = document.createElement("option"); o.value = k; o.textContent = D.states[k][0]; sel.appendChild(o); }); sel.value = "TX"; }
-  function stateRate() { return $("stateRate").value === "" ? D.states[$("state").value][1] : num($("stateRate").value, 0, 20); }
+  function stateRate() { return $("stateRate").value === "" ? null : num($("stateRate").value, 0, 20); }
   function render() {
     var sal = num($("salary").value, 0, 1e9), bonus = num($("bonus").value, 0, 1e9), st = $("status").value, sr = stateRate();
     var flat = Math.min(bonus, 1e6) * 0.22 + Math.max(0, bonus - 1e6) * 0.37;
@@ -18,10 +18,11 @@
     var ss = (Math.min(tot, f.ssWageBase) - Math.min(sal, f.ssWageBase)) * f.ssRate;
     var med = bonus * f.medicareRate;
     var thr = f.addlThreshold[st], addl = (Math.max(0, tot - thr) - Math.max(0, sal - thr)) * f.addlMedicareRate;
-    var state = bonus * sr / 100;
+            var sd = D.standardDeduction[st], tbl = D.brackets[st];
+    var fedTot = bracketTax(Math.max(0, tot - sd), tbl), fedSal = bracketTax(Math.max(0, sal - sd), tbl), actual = fedTot - fedSal;
+    var sc = $("state").value;
+    var state = sr === null ? Math.max(0, window.STATETAX.tax(sc, st, tot, 0, fedTot) - window.STATETAX.tax(sc, st, sal, 0, fedSal)) : bonus * sr / 100;
     var withheld = flat + ss + med + addl + state, net = bonus - withheld;
-    var sd = D.standardDeduction[st], tbl = D.brackets[st];
-    var actual = bracketTax(Math.max(0, tot - sd), tbl) - bracketTax(Math.max(0, sal - sd), tbl);
     $("result").textContent = money.format(net);
     $("resultNote").textContent = "estimated bonus you take home after withholding (" + dec.format(bonus ? net / bonus * 100 : 0) + "% of the bonus)";
     var tb = $("rows"); tb.textContent = "";

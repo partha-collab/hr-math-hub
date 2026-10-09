@@ -28,7 +28,7 @@
     var ss = Math.min(ficaWages, f.ssWageBase) * f.ssRate;
     var med = ficaWages * f.medicareRate;
     var addl = Math.max(0, ficaWages - f.addlThreshold[o.status]) * f.addlMedicareRate;
-    var state = Math.max(0, gross - pre) * o.stateRate / 100;
+    var state = o.stateRate === null ? window.STATETAX.tax(o.stateCode, o.status, gross, pre, fed) : Math.max(0, gross - pre) * o.stateRate / 100;
     var net = gross - pre - fed - ss - med - addl - state;
     return { gross: gross, pre: pre, fed: fed, ss: ss, med: med + addl, state: state, net: net, fedTaxable: fedTaxable };
   }
@@ -48,10 +48,10 @@
       : num($("amount").value, 0, 100000000);
     var n = PERIODS[$("freq").value];
     var st = $("state").value;
-    var rate = $("stateRate").value === "" ? D.states[st][1] : num($("stateRate").value, 0, 20);
+    var rate = $("stateRate").value === "" ? null : num($("stateRate").value, 0, 20);
     var r = compute({
       gross: annualGross, status: $("status").value, pretaxPct: num($("pretax").value, 0, 100),
-      fica125: 0, stateRate: rate
+      fica125: 0, stateRate: rate, stateCode: st
     });
     $("takehome").textContent = fmt.format(r.net / n);
     $("takehomeNote").textContent = "estimated take-home per paycheck, paid " + LABEL[$("freq").value] + " (" + fmt.format(r.net) + " per year)";
@@ -63,9 +63,10 @@
     addRow(tb, "Medicare", -r.med, -r.med / n);
     addRow(tb, "State income tax (estimate)", -r.state, -r.state / n);
     addRow(tb, "Take-home pay", r.net, r.net / n, "total");
-    $("stateHint").textContent = D.states[st][1] === 0
+    $("stateHint").textContent = window.STATETAX.noTax(st)
       ? D.states[st][0] + " has no state income tax on wages."
-      : "Using an approximate " + D.states[st][1] + "% for " + D.states[st][0] + ". Type your own rate below for a closer figure.";
+      : rate === null ? "Uses " + D.states[st][0] + "'s 2026 tax brackets and standard deduction. Local taxes and state payroll programs are not included."
+      : "Using your own flat rate of " + rate + "% instead of the " + D.states[st][0] + " brackets.";
   }
   function init() {
     var sel = $("state");
