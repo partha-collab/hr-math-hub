@@ -54,3 +54,4 @@
     });
   });
 })();
+;try{if(/\/index\.html$/.test(location.pathname)&&location.protocol!=="file:")history.replaceState(null,"",location.pathname.replace(/index\.html$/,"")+location.search+location.hash)}catch(e){}
