@@ -28,6 +28,20 @@
     });
   }
 
+  var gaLoaded = false;
+  function loadAnalytics() {
+    var id = (window.SITECFG || {}).gaMeasurementId || "";
+    if (gaLoaded || !/^G-[A-Z0-9]{6,14}$/.test(id)) return;
+    gaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", id, { allow_google_signals: false, allow_ad_personalization_signals: false });
+    var s = document.createElement("script");
+    s.async = true; s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
+    document.head.appendChild(s);
+  }
+
   var banner = null;
   function hide() { if (banner) { banner.remove(); banner = null; } }
   function show() {
@@ -35,18 +49,18 @@
     banner = document.createElement("div");
     banner.className = "consent"; banner.setAttribute("role", "dialog"); banner.setAttribute("aria-label", "Cookie choices");
     var p = document.createElement("p");
-    p.textContent = "We use cookies to show ads that keep this calculator free. You can accept or reject them; the calculator works either way. ";
+    p.textContent = "We use cookies to show ads and to count visits, which keeps this calculator free. You can accept or reject them; the calculator works either way. ";
     var a = document.createElement("a"); a.href = "privacy.html"; a.textContent = "Privacy Policy"; p.appendChild(a);
     var rej = document.createElement("button"); rej.type = "button"; rej.className = "btn ghost"; rej.textContent = "Reject";
     var acc = document.createElement("button"); acc.type = "button"; acc.className = "btn"; acc.textContent = "Accept";
     rej.addEventListener("click", function () { write("denied"); hide(); });
-    acc.addEventListener("click", function () { write("granted"); hide(); loadAds(); });
+    acc.addEventListener("click", function () { write("granted"); hide(); loadAds(); loadAnalytics(); });
     var row = document.createElement("div"); row.className = "consent-btns"; row.appendChild(rej); row.appendChild(acc);
     banner.appendChild(p); banner.appendChild(row); document.body.appendChild(banner);
   }
   document.addEventListener("DOMContentLoaded", function () {
     var st = state();
-    if (st === "granted") loadAds(); else if (st !== "denied") show();
+    if (st === "granted") { loadAds(); loadAnalytics(); } else if (st !== "denied") show();
     var b = document.getElementById("cookie-settings");
     if (b) b.addEventListener("click", function () {
       var was = state(); if (!gpc) write(null);
