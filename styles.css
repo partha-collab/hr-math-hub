@@ -81,3 +81,7 @@ footer .brand,footer .cols p,footer .cols div>span,footer .cols div>div{color:#F
 .grcto img{display:block;width:250px;height:250px;max-width:100%;border:1px solid var(--rule)}
 .promo-tag{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:700}
 @media(max-width:780px){.hero{grid-template-columns:1fr;padding-bottom:0}.hero-img{display:none}}
+.prose table,.deep table{margin:14px 0 20px}.prose th,.prose td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--rule)}.prose thead th{font-size:13.5px;color:var(--mute);font-weight:600}.prose h3{font-size:18px;margin:22px 0 4px}.prose ol,.prose ul{padding-left:22px}
+.prose .cta{margin:0 0 22px}.prose p.meta{margin:0 0 14px}
+.prose{overflow-wrap:break-word}.tw{overflow-x:auto;margin:14px 0 20px}.tw table{margin:0;min-width:480px}
+.deep{max-width:70ch;margin:30px 0}.deep h2{font-size:22px;margin:24px 0 6px}.deep li{margin-bottom:6px;line-height:1.7}.deep p{line-height:1.7}
